@@ -1,7 +1,16 @@
 @debug "fonts styles loaded";
 
-$font-family: "Arial, Helvetica, sans-serif";
+$font-family: Inter var, sans-serif;
 
 
+// for normal screen widths
 $font-size-header: 2rem;
 $font-size-normal: 1.2rem;
+
+// for tablet screen width, 425px
+$font-size-header-tablet: 1.5rem;
+$font-size-normal-tablet: 0.9rem;
+
+// for mobile screen width, 425px
+$font-size-header-mobile: 1rem;
+$font-size-normal-mobile: 0.9rem;
