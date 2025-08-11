@@ -1,0 +1,21 @@
+<div class="top-menu override-accordion">
+    <p-accordion [(activeIndex)]="activeIndex" collapseIcon="d-none" expandIcon="d-none">
+        <p-accordionTab [ngStyle]="{'pointer-events': isHeaderDropdownDisabled ? 'none' : 'initial'}">
+            <ng-template pTemplate="header">
+                <div class="top-menu_header">
+                    <div class="top-menu_header-text">
+                        System Monitoring Dashboard
+                    </div>                      
+                    <button
+                        pButton
+                        pRipple
+                        class="top-menu_header-refresh-btn"
+                        title="Refresh"
+                    >
+                        Refresh
+                    </button>
+                </div>
+            </ng-template>
+        </p-accordionTab>
+    </p-accordion>
+</div>

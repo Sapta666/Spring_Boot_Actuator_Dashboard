@@ -1,0 +1,10 @@
+@debug "utilities styles loaded";
+
+.vh-100 {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.base-bg {
+    background-color: $base-bg-col;
+}

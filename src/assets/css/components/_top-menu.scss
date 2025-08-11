@@ -1,0 +1,35 @@
+.top-menu {    
+    padding: $padding-2 $padding-4;
+
+    background-color: $top-menu-bg-col;   
+
+    &_header {
+        position: relative;
+        flex-grow: 1;
+    }
+
+    &_header-text {
+        color: $text-col-white;
+        font-size: $font-size-header;
+        display: inline-block;
+    }
+
+    &_header-refresh-btn {
+        padding: $padding-1;
+        color: $text-col-white;
+        background-color: $btn-bg-col-green;
+        border: none;
+
+        position: absolute;        
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);        
+
+        pointer-events: initial;
+
+    }
+
+    .p-toggleable-content {
+        display: none;
+    }
+}
