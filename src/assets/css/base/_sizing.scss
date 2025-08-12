@@ -2,3 +2,18 @@ $padding-1: 5px;
 $padding-2: 10px;
 $padding-3: 15px;
 $padding-4: 20px;
+
+$margins: (
+    "m1": 5px,
+    "m2": 10px,
+    "m3": 15px,
+    "m4": 20px
+);
+
+$breakpoints: (
+    "sm": 425px,
+    "md": 576px,
+    "lg": 768px,
+    "xl": 1024px,
+    "xxl": 1200px
+);

@@ -5,6 +5,10 @@
     overflow-y: auto;
 }
 
+.h-max-content {
+    height: max-content;
+}
+
 .base-bg {
     background-color: $base-bg-col;
 }

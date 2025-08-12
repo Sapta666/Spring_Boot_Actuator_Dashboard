@@ -1,16 +1,33 @@
 .top-menu {    
-    padding: $padding-2 $padding-4;
+    padding: $padding-2;
 
     background-color: $top-menu-bg-col;   
 
     &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         position: relative;
         flex-grow: 1;
     }
 
-    &_header-text {                     
-          
-        @media (max-width: 768px) and (min-width: 425px) {
+    .p-panel-icons {
+        display: none;
+    }
+
+    &_header-accordion-btn {
+        background: none;
+    }
+
+    .p-toggleable-content {
+        transition: height 1s;
+        height: auto !important;
+        overflow: hidden;
+    }
+
+    &_header-text {                               
+        @media (max-width: map-get($breakpoints,"xxl")) and (min-width: map-get($breakpoints,"sm")) {
             $font-size-header: $font-size-header-tablet;
             font-size: $font-size-header;
         } 
@@ -19,9 +36,10 @@
         font-size: $font-size-header;
         display: inline-block;        
 
-        @media (max-width: 425px) {
+        @media (max-width: map-get($breakpoints,"sm")) {
             $font-size-header: $font-size-header-mobile;
             font-size: $font-size-header;
+            width: 80%;
         }  
     }
 
@@ -31,16 +49,35 @@
         background-color: $btn-bg-col-green;
         border: none;
 
-        position: absolute;        
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);        
-
         pointer-events: initial;
 
+        &--show-text {
+            display: inline-block;
+            @media (max-width: map-get($breakpoints,"md")) {
+                display: none;
+            }            
+        }
+        &--show-icon {
+            display: none;
+            @media (max-width: map-get($breakpoints,"md")) {
+                display: inline-block;
+            }
+        }
+
     }
 
-    .p-toggleable-content {
-        display: none;
+    &_system-info-con {
+        display: flex;
+        justify-content: space-between;
+        gap: 1;
+        padding: $padding-1;    
+        margin-top: map-get($margins,"m1");
     }
+    
+    &_system-info {
+        color: white;
+        margin-right: 5px;
+        font-size: $font-size-normal;
+    }
+
 }

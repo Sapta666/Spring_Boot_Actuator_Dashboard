@@ -1,21 +1,99 @@
-<div class="top-menu override-accordion">
-    <p-accordion [(activeIndex)]="activeIndex" collapseIcon="d-none" expandIcon="d-none">
-        <p-accordionTab [ngStyle]="{'pointer-events': isHeaderDropdownDisabled ? 'none' : 'initial'}">
-            <ng-template pTemplate="header">
-                <div class="top-menu_header">
-                    <div class="top-menu_header-text">
-                        System Monitoring Dashboard
-                    </div>                      
-                    <button
-                        pButton
-                        pRipple
-                        class="top-menu_header-refresh-btn"
-                        title="Refresh"
-                    >
+<div class="top-menu override-panel">
+    <p-panel [collapsed]="isDropdownOpened">
+        <ng-template pTemplate="header">
+            <div class="top-menu_header">
+                <!-- header text and dropdown button -->
+                <div class="top-menu_header-text">
+                    @if(isPanelToggleable) {
+                        <button
+                            pButton
+                            pRipple
+                            class="top-menu_header-accordion-btn"
+                            (click)="onDropDownToggleClick()"
+                            title="Refresh">
+                                @if(isDropdownOpened) {
+                                    <i class="pi pi-chevron-circle-up"></i>                            
+                                } @else {
+                                    <i class="pi pi-chevron-circle-down"></i>                            
+                                }
+                        </button>
+                    }
+                    System Monitoring Dashboard
+                </div>             
+
+                @if(!isPanelToggleable) {
+                    <!-- system info -->
+                   <div class="top-menu_system-info-con">
+                        <div class="top-menu_system-info">
+                            <i class="pi pi-server"></i>
+                            System: up                    
+                        </div>
+
+                        <div class="top-menu_system-info">
+                            <i class="pi pi-database"></i>
+                            DB: mysql
+                        </div>
+
+                        <div class="top-menu_system-info">
+                            <i class="pi pi-save"></i>
+                            Disk Space: 25 GB
+                        </div>
+
+                        <div class="top-menu_system-info">
+                            <i class="pi pi-microchip-ai"></i>
+                            Processors: 4
+                        </div>
+
+                        <div class="top-menu_system-info">
+                            <i class="pi pi-clock"></i>
+                            Up Time: 00h:30m:46s
+                        </div>
+                    </div>
+                }
+
+                <!-- refresh button -->
+                <button
+                    pButton
+                    pRipple
+                    class="top-menu_header-refresh-btn"
+                    title="Refresh">
+                    <span class="top-menu_header-refresh-btn--show-text">
                         Refresh
-                    </button>
+                    </span>
+                    <span class="top-menu_header-refresh-btn--show-icon">
+                        <i class="pi pi-refresh"></i>                            
+                    </span>
+                </button>
+            </div>
+        </ng-template>        
+        <!-- class="top-menu_content" [ngClass]="{'top-menu_content--show': isDropdownOpened}" -->
+        @if(isDropdownOpened) {
+            <div class="top-menu_system-info-con">
+                <div class="top-menu_system-info">
+                    <i class="pi pi-server"></i>
+                    System: up                    
                 </div>
-            </ng-template>
-        </p-accordionTab>
-    </p-accordion>
+
+                <div class="top-menu_system-info">
+                    <i class="pi pi-database"></i>
+                    DB: mysql
+                </div>
+
+                <div class="top-menu_system-info">
+                    <i class="pi pi-save"></i>
+                    Disk Space: 25 GB
+                </div>
+
+                <div class="top-menu_system-info">
+                    <i class="pi pi-microchip-ai"></i>
+                    Processors: 4
+                </div>
+
+                <div class="top-menu_system-info">
+                    <i class="pi pi-clock"></i>
+                    Up Time: 00h:30m:46s
+                </div>
+            </div>
+        }
+    </p-panel>
 </div>

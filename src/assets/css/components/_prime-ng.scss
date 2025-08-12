@@ -1,7 +1,6 @@
-.override-accordion {
-    .p-accordion-header-link {
+.override-panel {
+    .p-panel-header, .p-panel-content {
         border: none;
         background: none;
-        display: block;
     }
 }
