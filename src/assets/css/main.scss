@@ -3,3 +3,15 @@
 @import "layouts";
 @import "pages";
 @import "themes";  
+
+.main-con {
+    display: block;
+    padding: 5px;
+    width: 75%;
+    margin: auto;
+
+    @media (max-width: map-get($breakpoints, "sm")) {
+        width: 100%;
+    }
+
+}

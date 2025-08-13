@@ -18,6 +18,7 @@
 
     &_header-accordion-btn {
         background: none;
+        margin-bottom: 3px;
     }
 
     .p-toggleable-content {
@@ -72,12 +73,21 @@
         gap: 1;
         padding: $padding-1;    
         margin-top: map-get($margins,"m1");
+
+        @media (max-width: map-get($breakpoints,"sm")) {
+            flex-wrap: wrap;
+        }
     }
     
     &_system-info {
         color: white;
         margin-right: 5px;
         font-size: $font-size-normal;
+
+        @media (max-width: map-get($breakpoints,"sm")) {
+            min-width: 40%;
+            margin-top: 5px;
+        }
     }
 
 }
