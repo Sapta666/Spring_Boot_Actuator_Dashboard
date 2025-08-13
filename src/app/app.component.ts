@@ -3,11 +3,14 @@ import { RouterOutlet } from '@angular/router';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { PrimeNGConfig } from 'primeng/api';
 import { HttpStatusCardsConComponent } from './components/http-status-cards/http-status-cards-con.component';
+import { HttpChartsConComponent } from './components/http-charts/http-charts-con.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TopMenuComponent, HttpStatusCardsConComponent],
+  imports: [TopMenuComponent, HttpStatusCardsConComponent, HttpChartsConComponent,
+    
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -5,10 +5,20 @@
 @import "themes";  
 
 .main-con {
-    display: block;
     padding: 5px;
-    width: 75%;
-    margin: auto;
+    
+    &_cards {
+        display: block;
+        margin: auto;
+        width: 75%;
+    }
+
+    &_charts {
+        display: block;
+        margin: auto;
+        width: 90%;
+        margin-top: 20px;
+    }
 
     @media (max-width: map-get($breakpoints, "sm")) {
         width: 100%;
