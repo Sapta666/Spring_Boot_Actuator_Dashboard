@@ -15,16 +15,22 @@
       <div class="charts-con">
         <!-- bar chart -->
         <div class="charts">
-          <!-- http charts con -->
-          <app-http-charts-con>        
-          </app-http-charts-con>
+          @if(canDisplay) {
+            <!-- http charts con -->
+            <app-http-charts-con
+              [pChartType]="'bar'">        
+            </app-http-charts-con>
+          }
         </div>
   
         <!-- pie chart -->
         <div class="charts">
-          <!-- http charts con -->
-          <app-http-charts-con>        
-          </app-http-charts-con>
+          @if(canDisplay) {
+            <!-- http charts con -->
+            <app-http-charts-con
+              [pChartType]="'pie'">        
+            </app-http-charts-con>
+          }
         </div>
       </div>
     </div>

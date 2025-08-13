@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 
 @Component({
@@ -14,6 +14,13 @@ export class HttpChartsConComponent implements OnInit {
     basicData: any;
 
     basicOptions: any;
+
+  //#endregion
+
+  //#region Attributes 
+
+  @Input() pChartType: "bar" | "pie" = "bar";
+//   @Input() p
 
   //#endregion
 
@@ -35,7 +42,7 @@ export class HttpChartsConComponent implements OnInit {
                 {
                     label: 'Sales',
                     data: [540, 325, 702, 620],
-                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                    backgroundColor: ['rgba(255, 159, 64)', 'rgba(75, 192, 192)', 'rgba(54, 162, 235)', 'rgba(153, 102, 255)'],
                     borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
                     borderWidth: 1
                 }
@@ -43,6 +50,9 @@ export class HttpChartsConComponent implements OnInit {
         };
 
         this.basicOptions = {
+            responsive: true,
+            // width: "100%",
+            aspectRatio: 1.5,
             plugins: {
                 legend: {
                     labels: {
@@ -50,30 +60,36 @@ export class HttpChartsConComponent implements OnInit {
                     }
                 }
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
+            ...(this.pChartType == 'pie'
+                ? {}
+                : {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: textColorSecondary
+                            },
+                            grid: {
+                                color: surfaceBorder,
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: textColorSecondary
+                            },
+                            grid: {
+                                color: surfaceBorder,
+                                drawBorder: false
+                            }
+                        }
                     }
                 }
-            }
+            )
+
         };
   }
 
   //#endregion
-
+ 
 }
