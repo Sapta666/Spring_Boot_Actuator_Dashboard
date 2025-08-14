@@ -12,3 +12,28 @@
 .base-bg {
     background-color: $base-bg-col;
 }
+
+.p-1 { padding: $padding-1; }
+.p-2 { padding: $padding-2; }
+.p-3 { padding: $padding-3; }
+.p-4 { padding: $padding-4; }
+
+.ps-1 { padding-left: $padding-1; }
+.ps-2 { padding-left: $padding-2; }
+.ps-3 { padding-left: $padding-3; }
+.ps-4 { padding-left: $padding-4; }
+
+.pe-1 { padding-right: $padding-1; }
+.pe-2 { padding-right: $padding-2; }
+.pe-3 { padding-right: $padding-3; }
+.pe-4 { padding-right: $padding-4; }
+
+.ms-1 { margin-left: map-get($margins,"m1"); }
+.ms-2 { margin-left: map-get($margins,"m2"); }
+.ms-3 { margin-left: map-get($margins,"m3"); }
+.ms-4 { margin-left: map-get($margins,"m4"); }
+
+.me-1 { margin-right: map-get($margins,"m1"); }
+.me-2 { margin-right: map-get($margins,"m2"); }
+.me-3 { margin-right: map-get($margins,"m3"); }
+.me-4 { margin-right: map-get($margins,"m4"); }

@@ -1,0 +1,49 @@
+.request-list {
+    padding-bottom: $padding-4;
+
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding-2;
+
+
+        &-text {
+            font-weight: bold;
+            font-size: $font-size-header-2;
+        }
+
+        &-btn {
+            padding: $padding-2;
+        }
+    }
+
+    thead {
+        transform: translateY(-2px);
+    }
+
+    th, td {
+        padding: $padding-2;
+        text-align: center;
+    }
+
+    &_view-btn {
+        display: inline-flex;
+        align-items: center;
+
+        color: $view-btn-col;
+
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid $view-btn-col;
+        margin: 3px 0;
+
+        &:hover {
+            cursor: pointer;
+
+            color: darken($color: $view-btn-col, $amount: 5);
+            border: 2px solid darken($color: $view-btn-col, $amount: 5);
+            background-color: rgba($view-btn-col,0.5);
+        }
+    }
+}

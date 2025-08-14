@@ -1,0 +1,42 @@
+<div class="request-list">
+  <div class="request-list_header">
+    <div class="request-list_header-text">
+      Http Traces
+    </div>
+    <button
+      pButton
+      pRipple
+      title="Export To Excel"
+      class="request-list_header-btn"
+      (click)="onExportToExcelClick()">
+      <i class="pi pi-external-link me-1"></i>        
+      Export To Excel
+    </button>
+  </div>
+  <p-table [value]="data" [scrollHeight]="pTotalHeight+'px'" [scrollable]="true">
+    <ng-template pTemplate="header">
+        <tr>
+          <th>Timestamp</th>
+          <th>Method</th>
+          <th>Time Taken(ms)</th>
+          <th>Status</th>
+          <th>Uri</th>
+          <th>View</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-dataItem>
+      <tr>            
+        <td>{{dataItem.Timestamp}}</td>
+        <td>{{dataItem.Method}}</td>
+        <td>{{dataItem.TimeTaken}}</td>
+        <td>{{dataItem.Status}}</td>
+        <td>{{dataItem.Uri}}</td>
+        <td>
+          <span class="request-list_view-btn" pRipple>
+            <i class="pi pi-eye"></i>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

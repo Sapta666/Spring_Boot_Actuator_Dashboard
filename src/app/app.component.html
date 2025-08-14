@@ -14,25 +14,31 @@
     <div class="main-con_charts">
       <div class="charts-con">
         <!-- bar chart -->
-        <div class="charts">
-          @if(canDisplay) {
-            <!-- http charts con -->
-            <app-http-charts-con
-              [pChartType]="'bar'">        
-            </app-http-charts-con>
-          }
-        </div>
+        @if(canDisplay) {
+          <!-- http charts con -->
+          <app-http-charts-con
+            [pChartType]="'bar'"
+            class="charts">        
+          </app-http-charts-con>
+        }
   
         <!-- pie chart -->
-        <div class="charts">
-          @if(canDisplay) {
-            <!-- http charts con -->
-            <app-http-charts-con
-              [pChartType]="'pie'">        
-            </app-http-charts-con>
-          }
-        </div>
+        @if(canDisplay) {
+          <!-- http charts con -->
+          <app-http-charts-con
+            [pChartType]="'pie'"
+            class="charts">        
+          </app-http-charts-con>
+        }
       </div>
+    </div>
+
+    <!-- http request list -->
+    <div class="main-con_request-list">
+      <!-- http request list con -->
+      <app-http-request-list-con
+        [pTotalHeight]="totalHeight">        
+      </app-http-request-list-con>
     </div>
 
   </div>

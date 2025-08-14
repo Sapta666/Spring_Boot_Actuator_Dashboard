@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
+import { BreakpointsEnum } from '../../common/enums/breakpoints.enum';
 
 @Component({
   selector: 'app-http-charts-con',
@@ -37,7 +38,7 @@ export class HttpChartsConComponent implements OnInit {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.basicData = {
-            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            labels: ['200', '400', '404', '500'],
             datasets: [
                 {
                     label: 'Sales',
@@ -52,13 +53,23 @@ export class HttpChartsConComponent implements OnInit {
         this.basicOptions = {
             responsive: true,
             // width: "100%",
-            aspectRatio: 1.5,
+            aspectRatio: window.innerWidth <= BreakpointsEnum.lg ? 2.2 : 2,
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
+                        color: textColor,
+                    },
+                    display: this.pChartType == "pie"
+                },
+                title: {
+                    display: true,
+                    text: this.pChartType == 'pie' 
+                        ? "HTTP Request Portions"
+                        : "Last 100 HTTP Request ",
+                    font: {
+                        size: "24"
                     }
-                }
+                },
             },
             ...(this.pChartType == 'pie'
                 ? {}
@@ -83,9 +94,10 @@ export class HttpChartsConComponent implements OnInit {
                                 drawBorder: false
                             }
                         }
-                    }
+                    },
+                    
                 }
-            )
+            ),
 
         };
   }

@@ -3,4 +3,9 @@
     grid-template-rows: auto;
     grid-template-columns: 48% 48%;
     column-gap: 6%;
+
+    @media (max-width: map-get($breakpoints,"lg")) {
+        grid-template-rows: auto auto;
+        grid-template-columns: auto;
+    }
 }

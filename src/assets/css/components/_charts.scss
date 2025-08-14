@@ -1,3 +1,7 @@
 .charts {
-    
+    display: block;
+    @media (max-width: map-get($breakpoints,"lg")) {
+        // height: auto;
+        // max-height: 200px;
+    }   
 }
