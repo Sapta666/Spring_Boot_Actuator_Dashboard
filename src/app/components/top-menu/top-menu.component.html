@@ -56,7 +56,8 @@
                     pButton
                     pRipple
                     class="top-menu_header-refresh-btn"
-                    title="Refresh">
+                    title="Refresh"
+                    (click)="onRefreshClick()">
                     <span class="top-menu_header-refresh-btn--show-text">
                         Refresh
                     </span>
@@ -71,27 +72,27 @@
             <div class="top-menu_system-info-con">
                 <div class="top-menu_system-info">
                     <i class="pi pi-server"></i>
-                    System: up                    
+                    System: {{pSystemStatus}}  
                 </div>
 
                 <div class="top-menu_system-info">
                     <i class="pi pi-database"></i>
-                    DB: mysql
+                    DB: {{pSystemDatabase ?? "***No database configured***"}}
                 </div>
 
                 <div class="top-menu_system-info">
                     <i class="pi pi-save"></i>
-                    Disk Space: 25 GB
+                    Disk Space: {{pSystemDiskSpace}} GB
                 </div>
 
                 <div class="top-menu_system-info">
                     <i class="pi pi-microchip-ai"></i>
-                    Processors: 4
+                    Processors: {{pProcessorCount}}                                        
                 </div>
 
                 <div class="top-menu_system-info">
                     <i class="pi pi-clock"></i>
-                    Up Time: 00h:30m:46s
+                    Up Time: {{pSystemUpTime}}
                 </div>
             </div>
         }

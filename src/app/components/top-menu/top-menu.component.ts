@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -28,6 +28,14 @@ export class TopMenuComponent implements OnInit {
   //#endregion
 
   //#region Attributes
+
+  @Input() pSystemStatus: string = "";
+  @Input() pSystemDatabase: string = "";  
+  @Input() pSystemDiskSpace: number = 0;  //GB
+  @Input() pProcessorCount: number = 0;  
+  @Input() pSystemUpTime: string = "";
+
+  @Output() onRefresh = new EventEmitter();
 
   //#endregion
 
@@ -64,6 +72,10 @@ export class TopMenuComponent implements OnInit {
 
   protected onDropDownToggleClick(): void {
     this.isDropdownOpened = !this.isDropdownOpened;
+  }
+
+  protected onRefreshClick(): void {
+    this.onRefresh.emit();
   }
 
   //#endregion

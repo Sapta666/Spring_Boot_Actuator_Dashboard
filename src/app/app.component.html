@@ -1,6 +1,12 @@
 <div class="vh-100 base-bg">
   <!-- top menu -->
-  <app-top-menu>
+  <app-top-menu
+    [pSystemStatus]="systemStatus"
+    [pSystemDatabase]="systemDatabase"
+    [pSystemDiskSpace]="systemDiskSpace" 
+    [pProcessorCount]="processorCount"
+    [pSystemUpTime]="systemUpTime"
+    (onRefresh)="onTopMenuRefresh()">
   </app-top-menu>
 
   <div class="main-con">
