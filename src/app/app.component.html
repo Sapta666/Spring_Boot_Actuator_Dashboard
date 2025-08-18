@@ -25,6 +25,7 @@
           <!-- http charts con -->
           <app-http-charts-con
             [pChartType]="'bar'"
+            [pData]="last100HttpRequests"
             class="charts">        
           </app-http-charts-con>
         }
@@ -34,6 +35,7 @@
           <!-- http charts con -->
           <app-http-charts-con
             [pChartType]="'pie'"
+            [pData]="last100HttpRequests"
             class="charts">        
           </app-http-charts-con>
         }
@@ -44,6 +46,7 @@
     <div class="main-con_request-list">
       <!-- http request list con -->
       <app-http-request-list-con
+        [pData]="last100HttpRequests"
         [pTotalHeight]="totalHeight">        
       </app-http-request-list-con>
     </div>

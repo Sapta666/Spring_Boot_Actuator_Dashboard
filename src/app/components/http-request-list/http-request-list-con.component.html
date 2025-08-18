@@ -16,7 +16,7 @@
   <p-table [value]="data" [scrollHeight]="pTotalHeight+'px'" [scrollable]="true">
     <ng-template pTemplate="header">
         <tr>
-          <th>Timestamp</th>
+          <th>Timestamp(Local)</th>
           <th>Method</th>
           <th>Time Taken(ms)</th>
           <th>Status</th>
@@ -26,13 +26,21 @@
     </ng-template>
     <ng-template pTemplate="body" let-dataItem>
       <tr>            
-        <td>{{dataItem.Timestamp}}</td>
-        <td>{{dataItem.Method}}</td>
-        <td>{{dataItem.TimeTaken}}</td>
-        <td>{{dataItem.Status}}</td>
-        <td>{{dataItem.Uri}}</td>
+        <td>{{dataItem.timestamp}}</td>
+        <td>{{dataItem.request?.method}}</td>
+        <td>{{dataItem.timeTaken}}</td>
         <td>
-          <span class="request-list_view-btn" pRipple>
+          <p-badge 
+            [value]="dataItem.response?.status" 
+            badgeSize="large" 
+            [severity]="statusBadgeType[dataItem?.response?.status]"/>
+        </td>
+        <td>{{dataItem.request?.uri}}</td>
+        <td>
+          <span 
+            pRipple
+            class="request-list_view-btn" 
+            (click)="onViewDataItemClick(dataItem)">
             <i class="pi pi-eye"></i>
           </span>
         </td>
@@ -40,3 +48,98 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog 
+  header="Http Trace Info" 
+  [modal]="true" 
+  [(visible)]="showDialog" 
+  [style]="{ 'width': '40%' }"
+  class="dialog"
+  (onHide)="showDialog = false">
+    <p-selectButton 
+      [options]="dialogTabOptions" 
+      [(ngModel)]="dialogTab"
+      class="text-center"/>
+    
+    @if(dialogTab == 'Request') {
+      <p-panel>
+        <div class="data-sec">
+          <span class="label">
+            Timestamp:
+          </span>
+          {{selectedItem?.timestamp}}
+        </div>
+
+        <div class="data-sec">
+          <span class="label">
+            Time Taken(ms):
+          </span>
+          {{selectedItem?.timeTaken}}
+        </div>
+
+        <div class="data-sec">
+          <span class="label">
+            Request Method:
+          </span>
+          {{selectedItem?.request?.method}}
+        </div>
+
+        <div class="data-sec">
+          <span class="label">
+            URI:
+          </span>
+          {{selectedItem?.request?.uri}}
+        </div>
+
+        <div class="data-sec">
+          <span class="label">
+            Origin:
+          </span>
+          {{selectedItem?.request?.headers?.origin[0]}}
+        </div>      
+
+        <div class="data-sec">
+          <span class="label">
+            User Agent (Web Client):
+          </span>
+          {{selectedItem?.request?.headers?.["user-agent"][0]}}
+        </div>  
+
+      </p-panel>
+    } @else if(dialogTab == 'Response') {
+      <p-panel>
+        <div class="data-sec">
+          <span class="label">
+            Status:
+          </span>
+          {{selectedItem?.response?.status}}
+        </div>  
+
+        <div class="data-sec">
+          <span class="label">
+            Date:
+          </span>
+          {{selectedItem?.response?.headers?.["Date"][0]}}
+        </div>  
+
+        <div class="data-sec">
+          <span class="label">
+            Content Type:
+          </span>
+          {{selectedItem?.response?.headers?.["Content-Type"][0]}}
+        </div>  
+
+        <div class="data-sec">
+          <span class="label">
+            Server Allowed Origins:
+          </span>
+          {{
+            selectedItem?.response?.headers?.["Access-Control-Allow-Origin"][0] == "*" 
+              ? "*** All ***"
+              : selectedItem?.response?.headers?.["Access-Control-Allow-Origin"][0]
+          }}
+        </div>          
+      </p-panel>
+
+    }
+</p-dialog>

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
   protected processorCount: number = 0;
   protected systemUpTime: string = "";
 
-  protected last100HttpRequests: any[] = [];
+  protected last100HttpRequests: any = [];
 
   protected totalHeight: number = 500;
 

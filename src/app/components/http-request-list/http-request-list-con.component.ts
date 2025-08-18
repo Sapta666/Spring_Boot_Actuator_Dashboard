@@ -5,13 +5,20 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
+import { HelperUtils } from '../../common/utils/helper-utils';
+import { DialogModule } from 'primeng/dialog';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { FormsModule } from '@angular/forms';
+import { PanelModule } from 'primeng/panel';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-http-request-list-con',
   standalone: true,
   imports: [
     TableModule, CommonModule, RippleModule,
-    ButtonModule,
+    ButtonModule, DialogModule, SelectButtonModule,
+    FormsModule, PanelModule, BadgeModule
   ],
   templateUrl: './http-request-list-con.component.html'
 })
@@ -19,11 +26,35 @@ export class HttpRequestListConComponent implements OnInit {
   
   //#region Variables
 
-  protected data: any[] = [];
+  protected data: any = null;
+  protected statusBadgeType: any = {
+    200: "success", 
+    404: "info", 
+    400: "warning",
+    500: "danger"
+  };  
+
+  protected selectedItem: any = null;
+  protected showDialog: boolean = false;
+  protected dialogTabOptions: string[] = ["Request","Response"];
+  protected dialogTab: string = this.dialogTabOptions[0];
 
   //#endregion
 
   //#region Attributes
+
+  @Input() set pData(value: any) {
+    this.data = value?.map(item => {
+      item.timestamp = HelperUtils.getDispTimeStamp(new Date(item?.timestamp))
+
+      if(item.timeTaken != 0) {
+        item.timeTaken = (item.timeTaken).substring(2,item?.timeTaken?.length - 1);
+        item.timeTaken = Math.floor(parseFloat(item.timeTaken) * 1000);
+      }
+        
+      return item;
+    });    
+  }
 
   @Input() pTotalHeight: number = 500;
 
@@ -36,14 +67,7 @@ export class HttpRequestListConComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    for(let m = 0; m < 10; m++) 
-      this.data.push({
-        Timestamp: "14/08/2025, 1:00 PM",
-        Method: "POST",
-        TimeTaken: 50,
-        Status: [200,400,404,500][m%4],
-        Uri: "http://localhost:4200/",        
-    });
+
   }
 
   @HostListener('window:resize')
@@ -57,6 +81,11 @@ export class HttpRequestListConComponent implements OnInit {
 
   protected onExportToExcelClick(): void {
 
+  }
+
+  protected onViewDataItemClick(dataItem: any): void {
+    this.selectedItem = dataItem;
+    this.showDialog = true;
   }
 
   //#endregion

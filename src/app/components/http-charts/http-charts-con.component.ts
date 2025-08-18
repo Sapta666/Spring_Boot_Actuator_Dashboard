@@ -4,54 +4,96 @@ import { BreakpointsEnum } from '../../common/enums/breakpoints.enum';
 import { ActuatorService } from '../../common/services/actuator.service';
 
 @Component({
-  selector: 'app-http-charts-con',
-  standalone: true,
-  imports: [ChartModule],
-  templateUrl: './http-charts-con.component.html'
+    selector: 'app-http-charts-con',
+    standalone: true,
+    imports: [ChartModule],
+    templateUrl: './http-charts-con.component.html'
 })
 export class HttpChartsConComponent implements OnInit {
-  
-  //#region Variables
 
-    basicData: any;
+    //#region Variables
 
-    basicOptions: any;
+    protected data: any = null;
 
-  //#endregion
+    protected chartType: "bar" | "pie" = "bar";
 
-  //#region Attributes 
+    protected basicData: any;
+    protected basicOptions: any;
 
-  @Input() pChartType: "bar" | "pie" = "bar";
-//   @Input() p
+    //#endregion
 
-  //#endregion
+    //#region Attributes 
 
-  //#region Page Load
+    @Input() set pChartType(value: "bar" | "pie") {
+        this.chartType = value ?? "bar";
 
-  constructor(
-    private _actuatorService: ActuatorService
-  ) {
+        this.setChartData();
+        this.setChartOptions();
+    }
+    @Input() set pData(value: any) {
+        this.data = value;
 
-  }
+        this.setChartData();
+        this.setChartOptions();
+    }
 
-  ngOnInit(): void {
-       const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    //#endregion
 
+    //#region Page Load
+
+    constructor() {
+
+    }
+
+    ngOnInit(): void {
+
+    }
+
+    //#endregion
+
+    //#region Private Functions
+
+    private setChartData(): void {
         this.basicData = {
-            labels: ['200', '400', '404', '500'],
+            labels: this.chartType == "bar"
+                ? ["GET", "POST", "PUT", "DELETE"]
+                : ['200', '400', '404', '500'],
             datasets: [
                 {
-                    label: 'Sales',
-                    data: [540, 325, 702, 620],
+                    label: this.chartType == "bar"
+                        ? "Request Type Count: "
+                        : "Response Status Count: ",
+                    data: this.chartType == "bar"
+                        ? [
+                            this.data?.filter(item => item?.request?.method == "GET")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "POST")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "PUT")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "DELETE")?.length ?? 0,
+                        ]
+                        : [
+                            this.data?.filter(item => item?.response?.status == 200)?.length ?? 0,
+                            this.data?.filter(item => item?.response?.status == 400)?.length ?? 0,
+                            this.data?.filter(item => item?.response?.status == 404)?.length ?? 0,
+                            this.data?.filter(item => item?.response?.status == 500)?.length ?? 0,
+                        ],
                     backgroundColor: ['rgba(255, 159, 64)', 'rgba(75, 192, 192)', 'rgba(54, 162, 235)', 'rgba(153, 102, 255)'],
                     borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
                     borderWidth: 1
                 }
             ]
         };
+    }
+
+    private setChartOptions(): void {
+        console.log([ this.data?.filter(item => item?.request?.method == "GET")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "POST")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "PUT")?.length ?? 0,
+                            this.data?.filter(item => item?.request?.method == "DELETE")?.length ?? 0,])
+
+        const documentStyle = getComputedStyle(document.documentElement);
+        const textColor = documentStyle.getPropertyValue('--text-color');
+        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.basicOptions = {
             responsive: true,
@@ -62,11 +104,11 @@ export class HttpChartsConComponent implements OnInit {
                     labels: {
                         color: textColor,
                     },
-                    display: this.pChartType == "pie"
+                    display: this.chartType == "pie"
                 },
                 title: {
                     display: true,
-                    text: this.pChartType == 'pie' 
+                    text: this.chartType == 'pie'
                         ? "Last 100 HTTP Status"
                         : "Last 100 HTTP Request Method",
                     font: {
@@ -74,7 +116,7 @@ export class HttpChartsConComponent implements OnInit {
                     }
                 },
             },
-            ...(this.pChartType == 'pie'
+            ...(this.chartType == 'pie'
                 ? {}
                 : {
                     scales: {
@@ -98,13 +140,13 @@ export class HttpChartsConComponent implements OnInit {
                             }
                         }
                     },
-                    
+
                 }
             ),
 
         };
-  }  
+    }
 
-  //#endregion
- 
+    //#endregion
+
 }

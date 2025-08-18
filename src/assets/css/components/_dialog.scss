@@ -1,0 +1,45 @@
+.dialog {
+    .p-dialog {
+        .p-dialog-header, .p-dialog-content {
+            padding: $padding-2;
+        }
+
+        .p-dialog-header {
+            border: 1px solid #e5e7eb;
+        }
+    }
+
+    .p-selectbutton {
+        .p-button {
+            padding: $padding-2;
+        }
+
+        .p-buttonset {
+            margin-bottom: map-get($margins,"m2");
+        }
+    }
+
+
+    .p-panel {
+        margin-top: map-get($margins,"m1");
+
+        .p-panel-header {
+            display: none;
+        }
+
+        .p-panel-content {
+            border: 1px solid #e5e7eb;
+            padding: $padding-2;
+            border-radius: 6px;
+        }
+
+        .data-sec {
+            margin-bottom: map-get($margins,"m3");
+
+            .label {
+                font-weight: bold;
+                margin-right: map-get($margins,"m1");
+            }
+        }
+    }
+}
