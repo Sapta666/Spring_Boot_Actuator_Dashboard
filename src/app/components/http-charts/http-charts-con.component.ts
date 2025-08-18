@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { BreakpointsEnum } from '../../common/enums/breakpoints.enum';
+import { ActuatorService } from '../../common/services/actuator.service';
 
 @Component({
   selector: 'app-http-charts-con',
@@ -27,7 +28,9 @@ export class HttpChartsConComponent implements OnInit {
 
   //#region Page Load
 
-  constructor() {
+  constructor(
+    private _actuatorService: ActuatorService
+  ) {
 
   }
 
@@ -64,8 +67,8 @@ export class HttpChartsConComponent implements OnInit {
                 title: {
                     display: true,
                     text: this.pChartType == 'pie' 
-                        ? "HTTP Request Portions"
-                        : "Last 100 HTTP Request ",
+                        ? "Last 100 HTTP Status"
+                        : "Last 100 HTTP Request Method",
                     font: {
                         size: "24"
                     }
@@ -100,7 +103,7 @@ export class HttpChartsConComponent implements OnInit {
             ),
 
         };
-  }
+  }  
 
   //#endregion
  

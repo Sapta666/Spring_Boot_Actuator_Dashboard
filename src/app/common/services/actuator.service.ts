@@ -31,6 +31,10 @@ export class ActuatorService {
         return this._httpClient.get<any>(`{{baseActuatorUrl}}/metrics/process.uptime`);    
     }
 
+    public getLast100HttpRequests(): Observable<any> {
+        return this._httpClient.get<any>(`{{baseActuatorUrl}}/httpexchanges`);
+    }
+
     //#endregion
 
 }

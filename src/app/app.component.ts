@@ -32,6 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
   protected processorCount: number = 0;
   protected systemUpTime: string = "";
 
+  protected last100HttpRequests: any[] = [];
+
   protected totalHeight: number = 500;
 
   //#endregion
@@ -81,6 +83,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getSystemHealthInfo();
     this.getProcessorCount();
     this.getSystemUpTime();
+
+    this.getLast100HttpRequest();
   }
 
   //#endregion
@@ -129,6 +133,14 @@ export class AppComponent implements OnInit, OnDestroy {
         value = Math.floor(value);
         this.systemUpTime += `:${value}s`;
 
+      });
+  }
+
+  private getLast100HttpRequest(): void {
+    this._actuatorService
+      .getLast100HttpRequests()
+      .subscribe(response => {
+          this.last100HttpRequests = response?.exchanges;
       });
   }
 

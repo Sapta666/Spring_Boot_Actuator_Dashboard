@@ -2,44 +2,28 @@
   
   <!-- 200, success -->
   <ng-container *ngTemplateOutlet="cardTemplate; 
-    context: {
-      $implicit: 200,
-      statusCount: 31,
-      updateTime: '13/08/2025, 11:00 A.M'
-    }" >
+    context: { $implicit: 200 }" >
   </ng-container>
 
   <!-- 404, page not found -->
   <ng-container *ngTemplateOutlet="cardTemplate; 
-    context: {
-      $implicit: 404,
-      statusCount: 0,
-      updateTime: '13/08/2025, 11:00 A.M'
-    }" >
+    context: { $implicit: 404 }" >
   </ng-container>
 
   <!-- 400, invalid request -->
   <ng-container *ngTemplateOutlet="cardTemplate; 
-    context: {
-      $implicit: 400,
-      statusCount: 0,
-      updateTime: '13/08/2025, 11:00 A.M'
-    }" >
+    context: { $implicit: 400 }" >
   </ng-container>
 
   <!-- 500, server error -->
   <ng-container *ngTemplateOutlet="cardTemplate; 
-    context: {
-      $implicit: 500,
-      statusCount: 0,
-      updateTime: '13/08/2025, 11:00 A.M'
-    }" >
+    context: { $implicit: 500 }" >
   </ng-container>
 
 </div>
 
 
-<ng-template #cardTemplate let-status let-statusCount="statusCount" let-updateTime="updateTime">
+<ng-template #cardTemplate let-status>
   <div class="http-cards_card"
     [ngClass]="{
       'http-cards_card--success': status == 200,
@@ -59,12 +43,12 @@
         </div>        
       </span>
       <div class="http-cards_status-count">
-        {{statusCount}}
+        {{requestInfo?.["Status"+status]?.count ?? 0}}
       </div>
     </div>
 
     <div class="http-cards_update-time">
-      Updated: {{updateTime}}
+      Updated: {{requestInfo?.["Status"+status]?.lastUpd ?? ""}}
     </div>
   </div>
 </ng-template>
