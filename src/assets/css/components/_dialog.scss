@@ -1,11 +1,17 @@
 .dialog {
     .p-dialog {
-        .p-dialog-header, .p-dialog-content {
+
+        .p-dialog-header,
+        .p-dialog-content {
             padding: $padding-2;
         }
 
         .p-dialog-header {
             border: 1px solid #e5e7eb;
+        }
+
+        @media (max-width: map-get($breakpoints, "lg")) {
+            width: 95% !important;
         }
     }
 
@@ -15,13 +21,13 @@
         }
 
         .p-buttonset {
-            margin-bottom: map-get($margins,"m2");
+            margin-bottom: map-get($margins, "m2");
         }
     }
 
 
     .p-panel {
-        margin-top: map-get($margins,"m1");
+        margin-top: map-get($margins, "m1");
 
         .p-panel-header {
             display: none;
@@ -34,11 +40,12 @@
         }
 
         .data-sec {
-            margin-bottom: map-get($margins,"m3");
+            margin-bottom: map-get($margins, "m3");
+            overflow-wrap: break-word;
 
             .label {
                 font-weight: bold;
-                margin-right: map-get($margins,"m1");
+                margin-right: map-get($margins, "m1");
             }
         }
     }

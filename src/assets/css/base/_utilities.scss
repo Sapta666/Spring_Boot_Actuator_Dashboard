@@ -38,4 +38,14 @@
 .me-3 { margin-right: map-get($margins,"m3"); }
 .me-4 { margin-right: map-get($margins,"m4"); }
 
+.mt-1 { margin-top: map-get($margins,"m1"); }
+.mt-2 { margin-top: map-get($margins,"m2"); }
+.mt-3 { margin-top: map-get($margins,"m3"); }
+.mt-4 { margin-top: map-get($margins,"m4"); }
+
+.mb-1 { margin-bottom: map-get($margins,"m1"); }
+.mb-2 { margin-bottom: map-get($margins,"m2"); }
+.mb-3 { margin-bottom: map-get($margins,"m3"); }
+.mb-4 { margin-bottom: map-get($margins,"m4"); }
+
 .text-center { text-align: center; }

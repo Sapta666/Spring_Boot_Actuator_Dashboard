@@ -25,6 +25,11 @@
     th, td {
         padding: $padding-2;
         text-align: center;
+
+        @media (max-width: map-get($breakpoints,"sm")) {
+            text-align: left;
+            position: relative;
+        }
     }
 
     &_view-btn {
@@ -44,6 +49,49 @@
             color: darken($color: $view-btn-col, $amount: 5);
             border: 2px solid darken($color: $view-btn-col, $amount: 5);
             background-color: rgba($view-btn-col,0.5);
+        }
+    }
+
+    &_table-header, &_table-row {
+        @media (max-width: map-get($breakpoints,"lg")) {
+            display: none;
+        }
+    }
+
+    &_card-view {
+        &-row {
+            display: none;
+            @media (max-width: map-get($breakpoints,"lg")) {
+                display: table-row;
+            }        
+        }
+
+        &-item {
+            border: 1px solid $border-col;
+            border-radius: $border-radius;
+            padding: $padding-1;
+
+            &-sec {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                @media (max-width: map-get($breakpoints,"sm")) {
+                    flex-direction: column;
+                    gap: 10px;
+                    align-items: start;
+                }        
+
+                &-value {
+                    font-weight: bold;
+                }
+
+                &--position {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                }
+            }
         }
     }
 }

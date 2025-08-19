@@ -15,7 +15,7 @@
   </div>
   <p-table [value]="data" [scrollHeight]="pTotalHeight+'px'" [scrollable]="true">
     <ng-template pTemplate="header">
-        <tr>
+        <tr class="request-list_table-header">
           <th>Timestamp(Local)</th>
           <th>Method</th>
           <th>Time Taken(ms)</th>
@@ -25,7 +25,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-dataItem>
-      <tr>            
+      <tr class="request-list_table-row">
         <td>{{dataItem.timestamp}}</td>
         <td>{{dataItem.request?.method}}</td>
         <td>{{dataItem.timeTaken}}</td>
@@ -45,10 +45,56 @@
           </span>
         </td>
       </tr>
+
+      <tr class="request-list_card-view-row">
+        <td>
+          <div 
+            pRipple 
+            class="request-list_card-view-item"
+            (click)="onViewDataItemClick(dataItem)">
+            <div class="request-list_card-view-item-sec">
+              <div> 
+                {{dataItem.timestamp}}
+              </div>
+              
+              <div> 
+                Method:
+                <span class="request-list_card-view-item-sec-value">
+                  {{dataItem.request?.method}} 
+                </span> 
+              </div>
+
+              <div> 
+                Time Taken: 
+                <span class="request-list_card-view-item-sec-value">
+                  {{dataItem.timeTaken}} ms
+                </span>
+              </div>
+            </div>
+
+            <div class="request-list_card-view-item-sec mt-2">
+              <div>
+                <span class="request-list_card-view-item-sec-value">
+                  Uri: 
+                </span>
+                {{dataItem.request?.uri}}
+              </div>
+              <p-badge 
+                [value]="dataItem.response?.status" 
+                [severity]="statusBadgeType[dataItem?.response?.status]"
+                badgeSize="large" 
+                class="request-list_card-view-item-sec--position"
+                />
+            </div>
+          </div>          
+        </td>
+      </tr>
     </ng-template>
   </p-table>
 </div>
 
+
+<!-- popup dialog to show the full info of a http trace -->
 <p-dialog 
   header="Http Trace Info" 
   [modal]="true" 

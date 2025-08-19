@@ -11,6 +11,10 @@
         display: block;
         margin: auto;
         width: 75%;
+
+        @media (max-width: map-get($breakpoints, "sm")) {
+            width: 100%;
+        }
     }
 
     &_charts {
@@ -18,10 +22,6 @@
         margin: auto;
         width: 90%;
         margin-top: 20px;
-    }
-
-    @media (max-width: map-get($breakpoints, "sm")) {
-        width: 100%;
     }
 
     &_request-list {
